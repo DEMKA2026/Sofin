@@ -1,0 +1,121 @@
+﻿<Window x:Class="Sofin.SpisokTovarov"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sofin"
+        mc:Ignorable="d"
+        Title="Список товаров"
+        Height="450"
+        Width="800"
+        FontFamily="Calibri">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Padding="10">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <TextBox x:Name="tbSearch"
+                             Width="220"
+                             Height="32"
+                             Margin="0,0,10,0"
+                             TextChanged="tbSearch_TextChanged"/>
+
+                    <Button x:Name="btnAdd"
+                            Content="Добавить"
+                            Width="120"
+                            Margin="10,0,10,0"
+                           
+                            Click="Add_Click"/>
+
+                    <Button x:Name="btnDelete"
+                            Content="Удалить"
+                            Width="120"
+                            Margin="0,0,10,0"
+                            
+                            Click="Delete_Click"/>
+
+                    <Button x:Name="btnOrder"
+                            Content="Заказы"
+                            Width="120"
+                            Margin="0,0,10,0"
+                          
+                            Click="Order_Click"/>
+
+                    <Button Content="Выход"
+                            Width="120"
+                            
+                            Click="BtnExit_Click"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+
+                    <TextBlock x:Name="tbUser"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Right"/>
+
+                    <TextBlock x:Name="tbRole"
+                               FontSize="14"
+                               Foreground="White"
+                               HorizontalAlignment="Right"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <DataGrid x:Name="dgProducts"
+                  Grid.Row="1"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  MouseDoubleClick="dgProducts_MouseDoubleClick"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal">
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding RowBrush}"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Категория" Width="2*" Binding="{Binding CategoryName}"/>
+                <DataGridTextColumn Header="Товар" Width="2*" Binding="{Binding TovarName}"/>
+                <DataGridTextColumn Header="Описание" Width="3*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Производитель" Width="*" Binding="{Binding Manufacturer}"/>
+                <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding Supplier}"/>
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Cost}"/>
+                <DataGridTextColumn Header="Ед." Width="80" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Итого" Width="*" Binding="{Binding FinalPrice}"/>
+                <DataGridTextColumn Header="%" Width="60" Binding="{Binding Discount, StringFormat={}{0}%}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>
